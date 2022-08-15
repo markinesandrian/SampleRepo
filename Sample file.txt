@@ -1,15 +1,1 @@
-sample 1
-sample 2
-sample 3
-Sample 4
-Sample 5
-Sample 6
-Sample 7
-awdadaw
-awd awD AD AWD
-awd ad awd awdaw a
-wd
-a d
-aw 
-da
-w daw d
+mod 1 
