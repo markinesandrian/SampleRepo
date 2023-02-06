@@ -9,19 +9,13 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class SampleHello {
 	@Autowired
-    private usersrepository userRepository;
+	private LogInService LogInService;
 	
 	@RequestMapping(value="LogIn",method = RequestMethod.POST)
 	public String sample(@RequestParam String name,@RequestParam String password, ModelMap model){
-        List<users> users = userRepository.findByname(name);
-        if(users.size()>0){
-            if(users.get(0).getPassword().contentEquals(password)){
-            	model.put("name", users.get(0).getName());
-            	return "SampleHello";
-            }
-            else {
-        		return "LogIn";
-            }
+        if(LogInService.ValidateUser(name,password)){
+            model.put("name", name);
+            return "SampleHello";
         }
         else {
     		return "LogIn";
@@ -32,7 +26,13 @@ public class SampleHello {
 	public String LogIn(){
 		return "LogIn";
 	}
-	
+
+	@RequestMapping(value="Users",method = RequestMethod.GET)
+	public String Users(ModelMap model){
+		String users = LogInService.GetUsers();
+    	model.put("name", users);
+		return "SampleHello";
+	}
 	
 	@RequestMapping("sample")
 	@ResponseBody
